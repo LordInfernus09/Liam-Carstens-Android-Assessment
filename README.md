@@ -17,7 +17,7 @@ For the next **72 hours** you will have free reign to finish off what Steve star
 ### Main tasks
 - [x] There are a total of **3 known** bugs, ranging from simple to complex. Fix the bugs.
 - [x] Create and display a reusable component, which could be used for the profile view.
-- [ ] Finish implementing the mechanism to order the list of engineers and add tests.
+- [x] Finish implementing the mechanism to order the list of engineers and add tests.
 
 > You can complete these tasks in any order you like, but starting with one or two bugs might be a good way to get into the codebase.
 
@@ -39,7 +39,7 @@ For designs check out the ***profile_view_designs*** folder in ***assets***.
 ## Ordering the list of Engineers
 There are no designs for this task.
 - [x] Order the list of engineers accending based on the number of years, coffees or bugs.
-- [ ] Add tests
+- [x] Add tests
 
 
 
