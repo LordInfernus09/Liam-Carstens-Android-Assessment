@@ -40,6 +40,7 @@ class QuestionCardView @JvmOverloads constructor(
             binding.answers.children.elementAt(value).isSelected = true
         }
 
+
     init {
         radius = resources.getDimension(R.dimen.corner_radius_normal)
         elevation = resources.getDimension(R.dimen.elevation_normal)
@@ -58,10 +59,11 @@ class QuestionCardView @JvmOverloads constructor(
             binding.answers.children.filter { it.isSelected }.forEach {
                 it.isSelected = false
             }
+            setSelection(view)
         }
     }
 
-    private fun setSelection() {
-
+    private fun setSelection(view: View) {
+        view.isSelected = true
     }
 }

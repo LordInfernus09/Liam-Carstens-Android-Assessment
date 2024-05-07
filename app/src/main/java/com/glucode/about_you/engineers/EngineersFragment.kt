@@ -13,11 +13,7 @@ import com.glucode.about_you.mockdata.MockData
 class EngineersFragment : Fragment() {
     private lateinit var binding: FragmentEngineersBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentEngineersBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         setUpEngineersList(MockData.engineers)
@@ -29,11 +25,45 @@ class EngineersFragment : Fragment() {
         inflater.inflate(R.menu.menu_engineers, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_years) {
-            return true
+    private fun updateEngineersList(engineers: List<Engineer>) {
+        val adapter = binding.list.adapter as? EngineersRecyclerViewAdapter
+        adapter?.updateData(engineers)
+    }
+
+    private fun sortList(engineers: List<Engineer>, type: Int) {
+        var sorted: List<Engineer> = engineers
+        when (type) {
+            0 -> {
+                sorted = engineers.sortedWith(compareBy { it.quickStats.years })
+            }
+            1 -> {
+                sorted =engineers.sortedWith(compareBy { it.quickStats.coffees })
+            }
+            2 -> {
+                sorted = engineers.sortedWith(compareBy { it.quickStats.bugs })
+            }
         }
-        return super.onOptionsItemSelected(item)
+        updateEngineersList(sorted)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_years -> {
+                sortList(MockData.engineers, 0)
+                true
+            }
+
+            R.id.action_coffees -> {
+                sortList(MockData.engineers, 1)
+                true
+            }
+
+            R.id.action_bugs -> {
+                sortList(MockData.engineers, 2)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setUpEngineersList(engineers: List<Engineer>) {

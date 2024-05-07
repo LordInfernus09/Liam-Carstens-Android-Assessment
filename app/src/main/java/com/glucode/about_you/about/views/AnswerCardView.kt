@@ -31,9 +31,9 @@ class AnswerCardView @JvmOverloads constructor(
 
     init {
         val whiteColour = ContextCompat.getColor(context, R.color.white)
-        val blackColour = ContextCompat.getColor(context, R.color.black)
+        val blackColour = ContextCompat.getColor(context, R.color.purple_500)
         selectedCardBackgroundColor = blackColour
-        selectedTextColor = blackColour
+        selectedTextColor = whiteColour
         deselectedTextColor = whiteColour
         radius = resources.getDimension(R.dimen.corner_radius_normal)
         elevation = resources.getDimension(R.dimen.elevation_normal)
