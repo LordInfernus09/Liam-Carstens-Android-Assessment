@@ -30,7 +30,7 @@ class EngineersFragment : Fragment() {
         adapter?.updateData(engineers)
     }
 
-    private fun sortList(engineers: List<Engineer>, type: Int) {
+    internal fun sortList(engineers: List<Engineer>, type: Int): List<Engineer> {
         var sorted: List<Engineer> = engineers
         when (type) {
             0 -> {
@@ -43,23 +43,27 @@ class EngineersFragment : Fragment() {
                 sorted = engineers.sortedWith(compareBy { it.quickStats.bugs })
             }
         }
-        updateEngineersList(sorted)
+        return sorted
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var sorted: List<Engineer> = MockData.engineers
         return when (item.itemId) {
             R.id.action_years -> {
-                sortList(MockData.engineers, 0)
+                sorted = sortList(MockData.engineers, 0)
+                updateEngineersList(sorted)
                 true
             }
 
             R.id.action_coffees -> {
-                sortList(MockData.engineers, 1)
+                sorted = sortList(MockData.engineers, 1)
+                updateEngineersList(sorted)
                 true
             }
 
             R.id.action_bugs -> {
-                sortList(MockData.engineers, 2)
+                sorted = sortList(MockData.engineers, 2)
+                updateEngineersList(sorted)
                 true
             }
             else -> super.onOptionsItemSelected(item)
